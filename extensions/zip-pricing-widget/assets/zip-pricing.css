@@ -1,0 +1,152 @@
+.zip-pricing-container {
+  margin: 20px 0;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-body-family, sans-serif);
+  border: 1px solid #eaeaea;
+  transition: all 0.3s ease;
+}
+
+.zip-pricing-container:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+}
+
+.zip-pricing-header h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.zip-pricing-form {
+  position: relative;
+}
+
+.zip-pricing-input-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.zip-pricing-input {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #fcfcfc;
+  color: #333;
+}
+
+.zip-pricing-input:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 1px #000;
+  background-color: #fff;
+}
+
+.zip-pricing-btn {
+  padding: 12px 24px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.zip-pricing-btn:hover {
+  background-color: #333;
+}
+
+.zip-pricing-btn:active {
+  transform: scale(0.98);
+}
+
+.zip-pricing-btn:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.zip-pricing-message {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.zip-pricing-error {
+  color: #e53935;
+  background-color: #ffebee;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border-left: 4px solid #e53935;
+}
+
+.zip-pricing-result-container {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed #eaeaea;
+}
+
+.zip-pricing-loader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  font-weight: 500;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.zip-pricing-success {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 15px 20px;
+  border-radius: 8px;
+  color: #1a1a1a;
+}
+
+.zip-pricing-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.zip-pricing-amount {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .zip-pricing-input-group {
+    flex-direction: column;
+  }
+  .zip-pricing-btn {
+    width: 100%;
+  }
+  .zip-pricing-success {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}

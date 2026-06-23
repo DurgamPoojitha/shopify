@@ -1,0 +1,50 @@
+{% schema %}
+{
+  "name": "ZIP Code Pricing",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Check Location Pricing"
+    },
+    {
+      "type": "text",
+      "id": "api_url",
+      "label": "API URL",
+      "default": "http://localhost:3000/api/get-price",
+      "info": "URL for the backend API"
+    }
+  ]
+}
+{% endschema %}
+
+<!-- Load CSS and JS -->
+{{ 'zip-pricing.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'zip-pricing.js' | asset_url }}" defer="defer"></script>
+
+<div class="zip-pricing-container" data-api-url="{{ block.settings.api_url }}" data-product-id="{{ product.id }}" data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+  <div class="zip-pricing-header">
+    <h3>{{ block.settings.heading }}</h3>
+  </div>
+  
+  <div class="zip-pricing-form">
+    <div class="zip-pricing-input-group">
+      <label for="zipcode-input" class="visually-hidden">ZIP Code</label>
+      <input type="text" id="zipcode-input" class="zip-pricing-input" placeholder="Enter 5-digit ZIP" maxlength="5" pattern="\d{5}">
+      <button type="button" id="zipcode-submit" class="zip-pricing-btn">Check Price</button>
+    </div>
+    <div id="zip-pricing-error" class="zip-pricing-message zip-pricing-error" style="display: none;"></div>
+  </div>
+
+  <div id="zip-pricing-result" class="zip-pricing-result-container" style="display: none;">
+    <div class="zip-pricing-loader" id="zip-pricing-loader" style="display: none;">
+      <span class="spinner"></span> Calculating...
+    </div>
+    <div class="zip-pricing-success" id="zip-pricing-success" style="display: none;">
+      <span class="zip-pricing-label">Estimated Price:</span>
+      <span class="zip-pricing-amount" id="zip-pricing-amount"></span>
+    </div>
+  </div>
+</div>
