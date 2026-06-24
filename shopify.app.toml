@@ -50,3 +50,8 @@ type = "metaobject_reference<$app:faq>"
 
 [sidekick]
 extensions_summary = "Read FAQ entries stored in the app"
+
+[app_proxy]
+url = "https://vacation-excerpt-regular-watching.trycloudflare.com/api"
+subpath = "pricing"
+prefix = "apps"

@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const pricingService = require('../services/pricingService');
+const verifyProxy = require('../middleware/verifyProxy');
 
-// POST /api/get-price
-router.post('/get-price', async (req, res) => {
+// POST /api/get-price (Protected by Shopify App Proxy signature)
+router.post('/get-price', verifyProxy, async (req, res) => {
   try {
     const { productId, variantId, zipCode } = req.body;
 
