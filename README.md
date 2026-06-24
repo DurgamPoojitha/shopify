@@ -12,13 +12,24 @@ This repository acts as a monorepo containing both the storefront widget (a Shop
 Storefront
    ↓ (Customer enters ZIP, clicks Check Price)
 Shopify Extension (Theme App Extension block)
-   ↓ (Async fetch POST /api/get-price)
+   ↓ (Async fetch to Shopify App Proxy: /apps/pricing/get-price)
+Shopify Servers (Attaches HMAC cryptographic signature)
+   ↓ (Proxies securely via tunnel to Backend)
 Backend API (Node.js + Express)
+   ↓ (Middleware validates Shopify HMAC Signature)
    ↓ (Calls Pricing Service)
 Pricing Rules Engine (Hardcoded ZIP mapping)
    ↓
 Response (Estimated price formatted and displayed)
 ```
+
+## Security & App Proxy Implementation
+
+To close security gaps and prevent unauthorized CORS scraping, this app leverages a **Shopify App Proxy**. 
+
+1. **Routing:** Storefront requests are not sent directly to the backend. They are sent to Shopify (`/apps/pricing`), which securely proxies them to the backend API.
+2. **Cryptographic Validation:** Shopify attaches an HMAC signature to every proxy request. The backend middleware (`backend/middleware/verifyProxy.js`) securely hashes the request string against the `SHOPIFY_API_SECRET` to perfectly validate the signature.
+3. **Local Development Fallback:** For developers trapped behind strict corporate firewalls that block tunneling services, the middleware contains a graceful fallback allowing direct local fetches when `NODE_ENV=development`.
 
 ## Repository Structure
 ```text
